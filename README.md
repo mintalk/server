@@ -7,7 +7,6 @@
 > Add -h to show the full usage.
 
 ~~~
-cd server
 go run .
 ~~~
 
