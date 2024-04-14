@@ -1,16 +1,5 @@
 # Mintalk
 
-## Client
-
-### Running
-
-> Add -h to show the full usage.
-
-~~~
-cd client
-go run . <host> <username> <password>
-~~~
-
 
 ## Server
 
@@ -39,4 +28,4 @@ cleanup_interval: 5
 
 When running the server, you can input some commands.
 
-[List of commands](server/COMMANDS.md)
+[List of commands](COMMANDS.md)
