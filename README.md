@@ -12,7 +12,7 @@ go run .
 
 ### Configuration
 
-The configuration file is located at `server/config.json`.
+The configuration file is located at `config.yaml`.
 
 Example configuration:
 
