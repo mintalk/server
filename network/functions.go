@@ -7,6 +7,9 @@ import (
 )
 
 func (server *Server) CreateMessage(uid, cid uint, contents string) error {
+	if len(contents) == 0 {
+		return nil
+	}
 	defer server.SendUpdate("message", NetworkData{"cid": cid})
 	err := server.database.Where(&db.Channel{ID: cid}).First(&db.Channel{}).Error
 	if err != nil {
