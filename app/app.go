@@ -17,6 +17,7 @@ type App struct {
 	server   *network.Server
 	console  *input.Console
 	debug    bool
+	noCli bool
 }
 
 func NewApp(config *config.Config) *App {
@@ -30,6 +31,7 @@ func (app *App) ReadArgs() error {
 		flag.PrintDefaults()
 	}
 	flag.BoolVar(&app.debug, "d", false, "run in debug mode")
+	flag.BoolVar(&app.noCli, "n", false, "don't show the cli")
 
 	flag.Parse()
 	return nil
@@ -57,12 +59,17 @@ func (app *App) Init() error {
 }
 
 func (app *App) Run() {
-	go func() {
+	run := func() {
 		err := app.server.Run()
 		if err != nil {
 			slog.Error("server failed", "err", err)
 			return
 		}
-	}()
-	app.console.InputLoop()
+	}
+	if !app.noCli {
+		go run()
+		app.console.InputLoop()
+	} else {
+		run()
+	}
 }
